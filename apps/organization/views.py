@@ -70,6 +70,8 @@ class OrgHomeView(View):
     def get(self, request, org_id):
         current_view = 'home'
         courses_org = CourseOrg.objects.get(id=int(org_id))
+        courses_org.click_nums += 1
+        courses_org.save()
         all_courses = courses_org.course_set.all()[:3]
         all_teachers = courses_org.teacher_set.all()[:1]
         return render(request, 'org-detail-homepage.html', {
@@ -215,19 +217,13 @@ class TeacherListView(View):
 class TeacherDetailView(View):
     def get(self, request, teacher_id):
         teacher = Teacher.objects.get(id=teacher_id)
+        teacher.click_nums += 1
+        teacher.save()
         courses = Course.objects.filter(teacher_id=teacher_id)
         all_teacher = Teacher.objects.all()
         sorted_teacher = all_teacher.order_by('-click_nums')[:3]
-        has_teacher_fav = False
-        has_org_fav = False
-        if UserFavorite.objects.filter(user=request.user, fav_id=teacher_id, fav_type=3):
-            has_teacher_fav = True
-        if UserFavorite.objects.filter(user=request.user, fav_id=teacher.org.id, fav_type=2):
-            has_org_fav = True
         return render(request, 'teacher-detail.html', {
             'teacher': teacher,
             'courses': courses,
             'sorted_teacher': sorted_teacher,
-            'has_teacher_fav': has_teacher_fav,
-            'has_org_fav': has_org_fav,
         })

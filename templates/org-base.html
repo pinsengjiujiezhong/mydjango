@@ -18,44 +18,81 @@
 <body>
 <section class="headerwrap headerwrap2">
     <header>
-		<div  class="header2 header">
- 			
-                <div class="top">
+		<div  class=" header">
+ 			<div class="top" {% if request.user.nick_name %}style="display: none;" {% endif %}>
 				<div class="wp">
-					<div class="fl">
-                        <p>联系方式：<b>333333333</b></p>
-                    </div>
-                    <div>
-                        <span>未读的消息：{{ request.user.get_unread_num }}</span>
-                    </div>
-                    <a style="color:white" class="fr registerbtn" href="register.html">注册</a>
-                    <a style="color:white" class="fr loginbtn" href="login.html">登录</a>
+					<div class="fl"><p>服务电话：<b>33333333</b></p></div>
+					<!--登录后跳转-->
+                        <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
 				</div>
 			</div>
-            
-            
-    <div class="middle companyheader">
-        <div class="wp">
-            <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{courses_org.image }}"/>
-            <div class="head fl">
-                <h1>
-                    {{ courses_org.name }}
-                    <img src="{% static 'images/authentication.png' %}"/>
-                    <img src="{% static 'images/gold.png' %}"/>
-                </h1>
-                <p class="fl">
-                    <span class="fl" style="margin-top:8px;color:#848484;">推荐指数： </span>
-                    <span class="precision company-credit" data-star-scope="5.0"></span>
-                    <span class="key">5.0</span>
-                </p>
-            </div>
-            <div class="btn fr collectionbtn  notlogin 
-                 "data-favid="22" data-fav-type="1">
-                 收藏
-            </div>
+            <div class="top" {% if not request.user.nick_name %}style="display: none;" {% endif %}>
+				<div class="wp">
+					<div class="fl">
+						<p>服务电话：<b>33333333</b></p>
+                    </div>
+					    <!--登录后跳转-->
 
-        </div>
-    </div>
+						<div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ request.user.nick_name }}<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                            	<dl>
+	                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+	                                <dd>
+	                                    <h2>{{ request.user.address }}</h2>
+	                                    <p>{{ request.user.nick_name }}</p>
+	                                </dd>
+                                </dl>
+                                <div class="btn">
+	                                <a class="personcenter fl" href="{% url 'users:users_center' %}">进入个人中心</a>
+	                                <a class="fr" href="{% url 'logout' %}">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+            <div class="middle">
+                <div class="wp">
+                    <a href="{% url 'index' %}"><img class="fl" src="{% static 'images/logo.jpg' %}"/></a>
+                    <div class="searchbox fr">
+                        <div class="selectContainer fl">
+                            <span class="selectOption" id="jsSelectOption" data-value="{% if request.path|slice:'7' ==  '/course' %}course{% elif request.path|slice:'13' == '/org/teachers' %}teacher{% elif request.path|slice:'13' != '/org/teachers' and request.path|slice:'4' == '/org' %}org{% else %}course{% endif %}">
+                                {% if request.path|slice:'7' ==  '/course' %}公开课{% elif request.path|slice:'13' == '/org/teachers' %}授课老师{% elif request.path|slice:'13' != '/org/teachers' and request.path|slice:'4' == '/org' %}授课机构{% else %}公开课{% endif %}
+                            </span>
+                            <ul class="selectMenu" id="jsSelectMenu">
+                                <li data-value="course">公开课</li>
+                                <li data-value="org">课程机构</li>
+                                <li data-value="teacher">授课老师</li>
+                            </ul>
+                        </div>
+                        <input id="search_keywords" class="fl" type="text" value="{{ search_keywords }}" placeholder="请输入搜索内容"/>
+                        <img class="search_btn fr" id="jsSearchBtn" src="{% static 'images/search_btn.png' %}"/>
+                    </div>
+                </div>
+            </div>
+			<nav>
+				<div class="nav">
+					<div class="wp">
+						<ul>
+							<li {% if request.path == "/"  %}class="active"{% endif %}><a href="{% url 'index' %}">首页</a></li>
+							<li {% if request.path|slice:"7" == "/course"  %}class="active"{% endif %}>
+								<a href="{% url 'courses:course_list' %}">
+									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
+								</a>
+							</li>
+							<li {% if request.path|slice:"13" == "/org/teachers"  %}class="active"{% endif %}>
+								<a href="{% url 'org:teacher_list' %}">授课教师</a>
+							</li>
+							<li {% if  request.path|slice:"9" == "/org/list"  %} class="active"{% endif %}><a href="{% url 'org:org_list' %}">授课机构</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
 			</div>
     </header>
 </section>

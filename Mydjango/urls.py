@@ -17,7 +17,7 @@ from django.urls import path
 from django.conf.urls import include, url
 import xadmin
 from django.views.generic import TemplateView
-from users.views import LoginView, RegisterView, ActiveView, ForGetPwdView, ResetView, ModifyPwdView, UserLoginView
+from users.views import LoginView, RegisterView, ActiveView, ForGetPwdView, ResetView, ModifyPwdView, UserLoginView, LogoutView
 from organization.views import OrgView
 # 同于处理django的静态文件
 from django.views.static import serve
@@ -26,8 +26,8 @@ from Mydjango.settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url('^$', TemplateView.as_view(template_name='index.html'), name='index'),
-    # url('^login/', LoginView.as_view(), name='login'),
-    url('^login/', UserLoginView.as_view(), name='login'),
+    url('^login/', LoginView.as_view(), name='login'),
+    # url('^login/', UserLoginView.as_view(), name='login'),
     url('^register/', RegisterView.as_view(), name='register'),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^active/(?P<active_code>.*)/$', ActiveView.as_view(), name='active'),
@@ -46,4 +46,7 @@ urlpatterns = [
 
     # 个人中心url配置
     url(r'^users/', include(('users.urls', 'users'), namespace='users')),
+
+    # 退出登录
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
 ]

@@ -21,13 +21,41 @@
 <section class="headerwrap ">
     <header>
 		<div  class=" header">
- 			<div class="top">
+ 			<div class="top" {% if request.user.nick_name %}style="display: none;" {% endif %}>
 				<div class="wp">
 					<div class="fl"><p>服务电话：<b>33333333</b></p></div>
 					<!--登录后跳转-->
-                        <a style="color:white" class="fr registerbtn" href="register.html">注册</a>
-                        <a style="color:white" class="fr loginbtn" href="login.html">登录</a>
+                        <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
 				</div>
+			</div>
+            <div class="top" {% if not request.user.nick_name %}style="display: none;" {% endif %}>
+				<div class="wp">
+					<div class="fl">
+						<p>服务电话：<b>33333333</b></p>
+                    </div>
+					    <!--登录后跳转-->
+
+						<div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ request.user.nick_name }}<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                            	<dl>
+	                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+	                                <dd>
+	                                    <h2>{{ request.user.address }}</h2>
+	                                    <p>{{ request.user.nick_name }}</p>
+	                                </dd>
+                                </dl>
+                                <div class="btn">
+	                                <a class="personcenter fl" href="{% url 'users:users_center' %}">进入个人中心</a>
+	                                <a class="fr" href="{% url 'logout' %}">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 			</div>
             <div class="middle">
                 <div class="wp">
@@ -289,7 +317,7 @@
                 </div>
                 <p class="error company-tips" id="jsCompanyTips"></p>
 				<input class="btn" type="text" id="jsStayBtn" value="立即咨询 >" />
-            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+            {% csrf_token %}
             </form>
 		</div>
 

@@ -1,6 +1,6 @@
 #coding=utf-8
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from .models import UserProfile, EmailVerifyRecord
 from opration.models import UserFavorite, UserMessage
@@ -12,10 +12,11 @@ from .froms import LoginForm, RegisterForm, ForGetPwdForm, ResetForm, UserUpload
 from django.contrib.auth.hashers import make_password
 from utils.email_send import email_send
 from utils.mixin_utils import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import json
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
+# 链接重定向  HttpResponseRedirect
 
 
 class CustomBackend(ModelBackend):
@@ -117,6 +118,14 @@ class LoginView(View):
                 return render(request, 'login.html', {'msg': '用户名或密码错误'})
         else:
             return render(request, 'login.html', {'login_form': login_form})
+
+
+# 退出登录
+class LogoutView(LoginRequiredMixin, View):
+    def get(self, request):
+        logout(request)
+        from django.core.urlresolvers import reverse
+        return HttpResponseRedirect(reverse('index'))
 
 
 # 测试sql 注入

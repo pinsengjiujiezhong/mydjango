@@ -17,7 +17,7 @@ from django.urls import path
 from django.conf.urls import include, url
 import xadmin
 from django.views.generic import TemplateView
-from users.views import LoginView, RegisterView, ActiveView, ForGetPwdView, ResetView, ModifyPwdView, UserLoginView, LogoutView
+from users.views import LoginView, RegisterView, ActiveView, ForGetPwdView, ResetView, ModifyPwdView, UserLoginView, LogoutView, IndexView
 from organization.views import OrgView
 # 同于处理django的静态文件
 from django.views.static import serve
@@ -25,7 +25,7 @@ from Mydjango.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
-    url('^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url('^$', IndexView.as_view(), name='index'),
     url('^login/', LoginView.as_view(), name='login'),
     # url('^login/', UserLoginView.as_view(), name='login'),
     url('^register/', RegisterView.as_view(), name='register'),

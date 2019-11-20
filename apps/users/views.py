@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
-from .models import UserProfile, EmailVerifyRecord
+from .models import UserProfile, EmailVerifyRecord, Banner
 from opration.models import UserFavorite, UserMessage
 from organization.models import CourseOrg, Teacher
 from courses.models import Course
@@ -325,5 +325,21 @@ class MyMessageView(LoginRequiredMixin, View):
             'messages': messages,
             'message_nums': message_nums
         })
+
+
+class IndexView(View):
+    def get(self, request):
+        all_banner = Banner.objects.all()[:5]
+        all_courses = Course.objects.filter(is_banner=1)[:3]
+        all_course_banner = Course.objects.filter(is_banner=False)[:6]
+        all_org = CourseOrg.objects.all()[:15]
+        return render(request, 'index.html', {
+            'all_banner': all_banner,
+            'all_courses': all_courses,
+            'all_course_banner': all_course_banner,
+            'all_org': all_org
+        })
+
+
 
 

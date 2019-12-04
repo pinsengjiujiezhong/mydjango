@@ -4,6 +4,7 @@ from django.views.generic.base import View
 from .models import CourseOrg, CityDict, Teacher
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from opration.models import UserFavorite
+from utils.mixin_utils import LoginRequiredMixin
 from .froms import UserAskForm
 from django.http import HttpResponse
 from django.db.models import Q
@@ -11,7 +12,7 @@ from courses.models import Course
 import json
 
 
-class OrgView(View):
+class OrgView(LoginRequiredMixin, View):
     def get(self, request):
         all_orgs = CourseOrg.objects.all()
         citys = CityDict.objects.all()
@@ -126,9 +127,9 @@ class AddFavView(View):
         fav_id = request.POST.get('fav_id', 0)
         fav_type = request.POST.get('fav_type', 0)
 
-        # if not request.user.is_authenticated():
-        #     # 判断用户登录状态
-        #     return HttpResponse('{"status":"fail", "msg":"用户未登录"}', content_type='application/json')
+        if not request.user.is_authenticated:
+            # 判断用户登录状态
+            return HttpResponse('{"status":"fail", "msg":"用户未登录"}', content_type='application/json')
 
         # 使用用户、收藏id、收藏类型进行联合查询
         exist_records = UserFavorite.objects.filter(user=request.user, fav_id=int(fav_id), fav_type=int(fav_type))
@@ -155,7 +156,6 @@ class AddFavView(View):
                 teacher.save()
 
             return HttpResponse('{"status":"success", "msg":"收藏"}', content_type='application/json')
-
         else:
             # 记录不存在 表示用户未收藏，并进行收藏
             user_fav = UserFavorite()

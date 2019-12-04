@@ -150,13 +150,13 @@ function add_fav(current_elem, fav_id, fav_type){
             xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}" );
         },
         success: function(data) {
+            console.log(data)
             if(data.status == 'fail'){
                 if(data.msg == '用户未登录'){
-                    window.location.href="login.html";
+                    window.location.href="/login";
                 }else{
                     alert(data.msg)
                 }
-
             }else if(data.status == 'success'){
                 current_elem.text(data.msg)
                 if(data.msg === '已收藏'){

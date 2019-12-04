@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16c58fe3-e29a-4b96-9913-5d9940ad8e18" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/org-detail-homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/org-detail-homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/organization/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/organization/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/teacher-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/teacher-detail.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,15 +44,15 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Pycharm\django\Mydjango\apps" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Pycharm\django\Mydjango\apps\users" />
       <recent name="E:\Pycharm\django\Mydjango\templates" />
       <recent name="E:\Pycharm\django\Mydjango\static\js" />
       <recent name="E:\Pycharm\django\Mydjango\static\css" />
       <recent name="E:\Pycharm\django\Mydjango\apps\utils" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Pycharm\django\Mydjango\apps" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -179,7 +178,7 @@
       <workItem from="1573963690848" duration="5807000" />
       <workItem from="1574255886566" duration="4964000" />
       <workItem from="1574780073161" duration="1240000" />
-      <workItem from="1575470610142" duration="541000" />
+      <workItem from="1575470610142" duration="2848000" />
     </task>
     <servers />
   </component>

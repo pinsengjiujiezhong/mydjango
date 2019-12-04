@@ -14,6 +14,7 @@ from utils.email_send import email_send
 from utils.mixin_utils import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 import json
+from django.urls import reverse
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 # 链接重定向  HttpResponseRedirect
@@ -111,7 +112,7 @@ class LoginView(View):
                 if userdb.is_active:
                     login(request, user)
                     db_code = UserProfile.objects.filter(username=user_name)
-                    return render(request, 'index.html', {})
+                    return HttpResponseRedirect(reverse('index'))
                 else:
                     return render(request, 'login.html', {'msg': '用户名未激活'})
             else:
@@ -124,7 +125,6 @@ class LoginView(View):
 class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        from django.core.urlresolvers import reverse
         return HttpResponseRedirect(reverse('index'))
 
 
@@ -143,7 +143,7 @@ class UserLoginView(View):
         cursor.execute(sql)
         for data in cursor.fetchall():
             print(data)
-        return render(request, 'index.html', {})
+        return HttpResponseRedirect(reverse('index'))
 
 
 class ResetView(View):

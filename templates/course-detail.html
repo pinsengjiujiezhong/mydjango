@@ -175,9 +175,10 @@ function add_fav(current_elem, fav_id, fav_type){
                 current_elem.text(data.msg)
                 console.log(333)
                 if ( data.msg === "已收藏") {
-                    $('.btns>div.btn.colectgroupbtn').css('background-color', '#ff7800')
+                    current_elem.css('background-color', '#ff7800')
+                    current_elem.css('color','#fff')
                 }else{
-                    $('.btns>div.btn.colectgroupbtn').css('background-color', '#717171')
+                    current_elem.css('background-color', '#717171')
                 }
 
             }

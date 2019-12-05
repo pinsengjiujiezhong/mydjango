@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16c58fe3-e29a-4b96-9913-5d9940ad8e18" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/org-detail-homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/org-detail-homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/org-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/org-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/usercenter-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usercenter-base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,15 +45,15 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Pycharm\django\Mydjango\apps" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Pycharm\django\Mydjango\apps\users" />
       <recent name="E:\Pycharm\django\Mydjango\templates" />
       <recent name="E:\Pycharm\django\Mydjango\static\js" />
       <recent name="E:\Pycharm\django\Mydjango\static\css" />
       <recent name="E:\Pycharm\django\Mydjango\apps\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Pycharm\django\Mydjango\apps" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -178,7 +180,7 @@
       <workItem from="1574255886566" duration="4964000" />
       <workItem from="1574780073161" duration="1240000" />
       <workItem from="1575470610142" duration="4312000" />
-      <workItem from="1575556402633" duration="2248000" />
+      <workItem from="1575556402633" duration="2751000" />
     </task>
     <servers />
   </component>

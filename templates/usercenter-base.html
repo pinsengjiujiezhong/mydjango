@@ -121,10 +121,7 @@
             <li {% if request.path|slice:'11' == '/users/info' %}class="active2"{% endif %}><a href="{% url 'users:users_center' %}">个人资料</a></li>
             <li {% if request.path|slice:'16' == '/users/my_course' %}class="active2"{% endif %}><a href="{% url 'users:users_course' %}">我的课程</a></li>
             <li {% if request.path|slice:'16' == '/users/myfav/org' %}class="active2"{% endif %}><a href="{% url 'users:myfav_org' %}">我的收藏</a></li>
-            <li {% if request.path|slice:'14' == '/users/message' %}class="active2"{% endif %}>
-                <a href="usercenter-message.html" style="position: relative;">
-                    我的消息
-                </a>
+            <li {% if request.path|slice:'14' == '/users/message' %}class="active2"{% endif %}><a href="{% url 'users:mymessage' %}" style="position: relative;">我的消息</a>
             </li>
         </ul>
 	</div>
